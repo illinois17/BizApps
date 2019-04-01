@@ -11,7 +11,7 @@ namespace NaSkorost_
     {
         static void Main(string[] args)
         {
-            string text="";
+            string text=String.Empty;
             List<string> words = new List<string>();
             try
             {
@@ -28,13 +28,14 @@ namespace NaSkorost_
             }
             
             words = SplitText(text);
-
+            Console.WriteLine("Количество слов: " + words.Count);
             foreach (string word in words)
             {
                 Console.WriteLine(word);
             }
             
             Console.WriteLine("Содержит слов с цифрами: "+ContainingDigits(words));
+            SwapWords(text);
             Console.ReadLine();
 
         }
@@ -70,7 +71,7 @@ namespace NaSkorost_
             }
             return words;
         }
-
+        
         public static int ContainingDigits(List<string> words)
         {
             int containDigits = 0;
@@ -87,7 +88,20 @@ namespace NaSkorost_
             }
             return containDigits;
         }
-        static bool qweqweIsDigitsOnly(string words)
+
+        public static void SwapWords(string text)
+        {
+            List<string> words;
+            words = SplitText(text);
+            foreach (string s in words)
+                if (s.Length == 6)
+                    Console.WriteLine(s + "->" + s.Substring(3, 3) + s.Substring(0, 3)); 
+        }
+
+
+
+
+        static bool IsDigitsOnly(string words)
         {
             foreach (char letter in words)
             {
